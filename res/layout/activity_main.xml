@@ -34,12 +34,20 @@
         <requestFocus />
     </EditText>
 
-    <TextView
-        android:id="@+id/textView3"
+    <EditText
+        android:id="@+id/editText11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText1"
         android:layout_below="@+id/editText1"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText11"
+        android:layout_below="@+id/editText11"
         android:layout_marginTop="17dp"
         android:text="请输入短信内容关键字" />
 
@@ -56,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText2"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/editText2"
         android:text="请输入要发送到的号码" />
 
     <EditText

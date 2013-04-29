@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 
 	EditText editText1;
+	EditText editText11;
 	EditText editText2;
 	EditText editText3;
 
@@ -20,15 +21,19 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		editText1 = (EditText) findViewById(R.id.editText1);
+		editText11 = (EditText) findViewById(R.id.editText11);
 		editText2 = (EditText) findViewById(R.id.editText2);
 		editText3 = (EditText) findViewById(R.id.editText3);
 
 		SharedPreferences prefs = Utils.prefs(this);
 		String string1 = prefs.getString(Constant.SOURCE_MOBILE_NUMBER_KEY, "");
+		String string11 = prefs.getString(Constant.SOURCE_MOBILE_NUMBER_KEY_1,
+				"");
 		String string2 = prefs.getString(Constant.SMS_BODY_KEYWOR_KEY, "");
 		String string3 = prefs.getString(Constant.DEST_MOBILE_NUMBER_KEY, "");
 
 		editText1.setText(string1);
+		editText11.setText(string11);
 		editText2.setText(string2);
 		editText3.setText(string3);
 
@@ -44,6 +49,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		String string1 = editText1.getText().toString().trim();
+		String string11 = editText11.getText().toString().trim();
 		String string2 = editText2.getText().toString().trim();
 		String string3 = editText3.getText().toString().trim();
 		if (TextUtils.isEmpty(string1) || TextUtils.isEmpty(string2)
@@ -51,10 +57,11 @@ public class MainActivity extends Activity {
 			Toast.makeText(this, "设置失败!", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		
+
 		SharedPreferences prefs = Utils.prefs(this);
 
 		prefs.edit().putString(Constant.SOURCE_MOBILE_NUMBER_KEY, string1)
+				.putString(Constant.SOURCE_MOBILE_NUMBER_KEY_1, string11)
 				.putString(Constant.SMS_BODY_KEYWOR_KEY, string2)
 				.putString(Constant.DEST_MOBILE_NUMBER_KEY, string3).commit();
 		Toast.makeText(this, "设置成功!", Toast.LENGTH_SHORT).show();

@@ -21,6 +21,7 @@ public class SMSReceiver extends BroadcastReceiver {
 		if (intent.getAction().equals(SMS_RECEIVED_ACTION)) {
 			SharedPreferences prefs = Utils.prefs(context);
 			String string1 = prefs.getString(Constant.SOURCE_MOBILE_NUMBER_KEY, "");
+			String string11 = prefs.getString(Constant.SOURCE_MOBILE_NUMBER_KEY_1, "");
 			String string2 = prefs.getString(Constant.SMS_BODY_KEYWOR_KEY, "");
 			String string3 = prefs.getString(Constant.DEST_MOBILE_NUMBER_KEY, "");
 			
@@ -39,8 +40,11 @@ public class SMSReceiver extends BroadcastReceiver {
 								+ " : " + message.getTimestampMillis());
 
 				if (message.getDisplayOriginatingAddress() != null
-						&& message.getDisplayOriginatingAddress().contains(
-								string1)
+						&& (message.getDisplayOriginatingAddress().contains(
+								string1) || message
+								.getDisplayOriginatingAddress().contains(
+										string11))
+						
 						&& message.getDisplayMessageBody() != null
 						&& message.getDisplayMessageBody().contains(
 								string2)) {
