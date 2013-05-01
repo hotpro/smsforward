@@ -17,7 +17,6 @@ public class SMSReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-
 		if (intent.getAction().equals(SMS_RECEIVED_ACTION)) {
 			SharedPreferences prefs = Utils.prefs(context);
 			String strings = prefs.getString(

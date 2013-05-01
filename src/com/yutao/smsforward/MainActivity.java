@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 		SharedPreferences prefs = Utils.prefs(this);
 		String strings = prefs
 				.getString(Constant.SOURCE_MOBILE_NUMBERS_KEY, "");
-		String[] stringArray = strings.split("|");
+		String[] stringArray = strings.split("\\|");
 		modelView.setHint("请输入来源号码");
 		modelView.init(stringArray);
 
