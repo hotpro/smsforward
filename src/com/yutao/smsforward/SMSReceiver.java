@@ -20,12 +20,18 @@ public class SMSReceiver extends BroadcastReceiver {
 
 		if (intent.getAction().equals(SMS_RECEIVED_ACTION)) {
 			SharedPreferences prefs = Utils.prefs(context);
-			String string1 = prefs.getString(Constant.SOURCE_MOBILE_NUMBER_KEY, "");
-			String string11 = prefs.getString(Constant.SOURCE_MOBILE_NUMBER_KEY_1, "");
+			String strings = prefs.getString(
+					Constant.SOURCE_MOBILE_NUMBERS_KEY, "");
+			String[] stringArray = strings.split("|");
+			if (stringArray == null || stringArray.length == 0) {
+				return;
+			}
+
 			String string2 = prefs.getString(Constant.SMS_BODY_KEYWOR_KEY, "");
-			String string3 = prefs.getString(Constant.DEST_MOBILE_NUMBER_KEY, "");
-			
-			if (TextUtils.isEmpty(string1) || TextUtils.isEmpty(string2) || TextUtils.isEmpty(string3)) {
+			String string3 = prefs.getString(Constant.DEST_MOBILE_NUMBER_KEY,
+					"");
+
+			if (TextUtils.isEmpty(string2) || TextUtils.isEmpty(string3)) {
 				return;
 			}
 
@@ -39,20 +45,19 @@ public class SMSReceiver extends BroadcastReceiver {
 								+ " : " + message.getDisplayMessageBody()
 								+ " : " + message.getTimestampMillis());
 
-				if (message.getDisplayOriginatingAddress() != null
-						&& (message.getDisplayOriginatingAddress().contains(
-								string1) || message
-								.getDisplayOriginatingAddress().contains(
-										string11))
-						
-						&& message.getDisplayMessageBody() != null
-						&& message.getDisplayMessageBody().contains(
-								string2)) {
-					SmsManager smsManager = SmsManager.getDefault();
-					smsManager.sendTextMessage(string3,
-							null, message.getDisplayMessageBody(), null, null);
-					Log.i(TAG, "转发成功: " + string3);
-					break;
+				for (String s : stringArray) {
+					if ((!TextUtils.isEmpty(s)) && message.getDisplayOriginatingAddress() != null
+							&& message.getDisplayOriginatingAddress().contains(
+									s)
+							&& message.getDisplayMessageBody() != null
+							&& message.getDisplayMessageBody()
+									.contains(string2)) {
+						SmsManager smsManager = SmsManager.getDefault();
+						smsManager.sendTextMessage(string3, null,
+								message.getDisplayMessageBody(), null, null);
+						Log.i(TAG, "转发成功: " + string3);
+						break;
+					}
 				}
 
 			}

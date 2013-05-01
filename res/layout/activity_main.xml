@@ -14,40 +14,20 @@
         android:layout_marginTop="14dp"
         android:text="短信自动转发工具" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/model_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView2"
-        android:layout_marginTop="14dp"
-        android:text="请输入来源号码" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/editText11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:ems="10" />
+        layout="@layout/model_view" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText11"
-        android:layout_below="@+id/editText11"
+        android:layout_alignLeft="@+id/model_view"
+        android:layout_below="@+id/model_view"
         android:layout_marginTop="17dp"
         android:text="请输入短信内容关键字" />
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yutao.smsforward.ModelView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/hint"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="hint" />
+
+        <TextView
+            android:id="@+id/btn_add"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:gravity="center"
+            android:text="+" />
+    </LinearLayout>
+
+</com.yutao.smsforward.ModelView>
